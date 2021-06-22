@@ -23,6 +23,8 @@ jobs:
           DEBIAN_FRONTEND: noninteractive
         run: |
           sudo apt-get update
+          sudo apt-get install libcap-bin
+          sudo apt-get install netdata
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android/sdk
           sudo docker image prune -a -f
           sudo apt-get -y install unzip subversion
@@ -120,11 +122,7 @@ jobs:
         run: |
           cd code/friendlywrt
 
-          rm -rf feeds/packages/libs/libcap
-          svn co https://github.com/openwrt/packages/tree/openwrt-19.07/libs/libcap feeds/packages/libs/libcap
           
-          rm -rf package/feeds/packages/netdata
-          svn co https://github.com/openwrt/packages/tree/openwrt-19.07/admin/netdata package/feeds/packages/netdata
 
           rm -rf feeds/packages/libs/libnatpmp
           svn co https://github.com/coolsnowwolf/packages/tree/master/libs/libnatpmp feeds/packages/libs/libnatpmp
